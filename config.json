@@ -1,0 +1,17 @@
+{
+  "site": {
+    "title": "Personal Website",
+    "description": "My personal website",
+    "theme": {
+      "primaryColor": "#007bff",
+      "secondaryColor": "#6c757d",
+      "fontFamily": "Arial, sans-serif",
+      "mode": "dark"
+    },
+    "features": {
+      "darkMode": false,
+      "notifications": false,
+      "analytics": false
+    }
+  }
+}

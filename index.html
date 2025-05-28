@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Transfer - Secure Bitcoin Transactions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Bitcoin Transfer</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#send">Send Bitcoin</a></li>
+                <li><a href="#transactions">Transactions</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Secure Bitcoin Transactions</h1>
+            <p class="typing-text">Send and receive Bitcoin with ease</p>
+            <div class="cta-buttons">
+                <a href="#send" class="cta-button primary">Send Bitcoin</a>
+                <a href="#transactions" class="cta-button secondary">View Transactions</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="send" class="transaction-form">
+        <h2>Send Bitcoin</h2>
+        <div class="form-container">
+            <form id="send-form">
+                <div class="form-group">
+                    <label for="recipient">Recipient's Bitcoin Address</label>
+                    <input type="text" id="recipient" name="recipient" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount (BTC)</label>
+                    <div class="input-group">
+                        <input type="number" id="amount" name="amount" step="0.00000001" required>
+                        <span class="currency-symbol">BTC</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="memo">Memo (Optional)</label>
+                    <input type="text" id="memo" name="memo">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="submit-button">Send Bitcoin</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="transactions" class="transactions">
+        <h2>Recent Transactions</h2>
+        <div class="transactions-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-list">
+                    <!-- Transactions will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Bitcoin Transfer</h2>
+        <div class="about-content">
+            <p>A secure and user-friendly platform for Bitcoin transactions. Built with modern web technologies and blockchain integration.</p>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure</h3>
+                    <p>End-to-end encryption and secure transaction processing</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>Fast</h3>
+                    <p>Quick transaction processing with real-time updates</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile-Friendly</h3>
+                    <p>Responsive design that works on all devices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Bitcoin Transfer. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/@bitcoinjs/lib@5.2.0"></script>
+    <script src="https://unpkg.com/@bitcoinjs/wallet@1.1.0"></script>
+    <!-- Toast Counter -->
+    <div id="toast-counter" class="toast-counter hidden">
+        <span id="toast-count">0</span> notifications
+    </div>
+
+    <!-- Toast Containers -->
+    <div id="loading-toast" class="toast toast-loading hidden">
+      <div class="toast-content">
+        <i class="fas fa-spinner fa-spin"></i>
+        <span id="loading-message"></span>
+      </div>
+    </div>
+    <div id="error-toast" class="toast toast-error hidden">
+      <div class="toast-content">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="error-message"></span>
+        <button class="close-toast" onclick="closeToast('error-toast')">&times;</button>
+      </div>
+    </div>
+    <div id="success-toast" class="toast toast-success hidden">
+      <div class="toast-content">
+        <i class="fas fa-check-circle"></i>
+        <span id="success-message"></span>
+        <button class="close-toast" onclick="closeToast('success-toast')">&times;</button>
+      </div>
+    </div>
+    <div id="warning-toast" class="toast toast-warning hidden">
+      <div class="toast-content">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span id="warning-message"></span>
+        <button class="close-toast" onclick="closeToast('warning-toast')">&times;</button>
+      </div>
+    </div>
+    <div id="info-toast" class="toast toast-info hidden">
+      <div class="toast-content">
+        <i class="fas fa-info-circle"></i>
+        <span id="info-message"></span>
+        <button class="close-toast" onclick="closeToast('info-toast')">&times;</button>
+      </div>
+    </div>
+    <div id="confirmation-toast" class="toast toast-confirmation hidden">
+      <div class="toast-content">
+        <i class="fas fa-question-circle"></i>
+        <span id="confirmation-message"></span>
+        <button class="confirm-toast" onclick="confirmAction()">Yes</button>
+        <button class="cancel-toast" onclick="closeToast('confirmation-toast')">No</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+:root {
+    --primary-color: #FF9F00;
+    --secondary-color: #FF7F00;
+    --text-color: #1f2937;
+    --background-color: #ffffff;
+    --card-bg: #f3f4f6;
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+}
+
+[data-theme="dark"] {
+    --text-color: #f3f4f6;
+    --background-color: #1f2937;
+    --card-bg: #374151;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+/* Error Toast Styles */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.toast.hidden {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* Toast Counter */
+.toast-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #343a40;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  z-index: 1001;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.toast-counter:hover {
+  background-color: #495057;
+}
+
+.toast-counter.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Loading Toast */
+.toast-loading {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.toast-loading .close-toast {
+  display: none;
+}
+
+/* Enhanced Animations */
+@keyframes slideIn {
+  0% {
+    transform: translateY(100%) translateX(100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(100%) translateX(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(100%) translateX(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(100%) translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.toast.pulse {
+  animation: pulse 1s infinite;
+}
+
+.toast.loading .fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Confirmation Toast */
+.toast-confirmation {
+  background-color: #fff;
+  color: #495057;
+  padding: 20px;
+  min-width: 300px;
+}
+
+.toast-confirmation .toast-content {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.toast-confirmation i {
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+
+.toast-confirmation .confirm-toast,
+.toast-confirmation .cancel-toast {
+  margin-left: 10px;
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+.toast-confirmation .confirm-toast {
+  background-color: #28a745;
+  color: white;
+}
+
+.toast-confirmation .confirm-toast:hover {
+  background-color: #218838;
+}
+
+.toast-confirmation .cancel-toast {
+  background-color: #dc3545;
+  color: white;
+}
+
+.toast-confirmation .cancel-toast:hover {
+  background-color: #c82333;
+}
+
+.toast.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.toast i {
+  font-size: 1.2rem;
+}
+
+.toast-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.close-toast {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.close-toast:hover {
+  opacity: 1;
+}
+
+/* Error Toast */
+.toast-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.toast-error .close-toast {
+  color: #721c24;
+}
+
+.toast-error .close-toast:hover {
+  color: #5a1b1f;
+}
+
+/* Success Toast */
+.toast-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.toast-success .close-toast {
+  color: #155724;
+}
+
+.toast-success .close-toast:hover {
+  color: #10401a;
+}
+
+/* Warning Toast */
+.toast-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.toast-warning .close-toast {
+  color: #856404;
+}
+
+.toast-warning .close-toast:hover {
+  color: #6d5203;
+}
+
+/* Info Toast */
+.toast-info {
+  background-color: #cce5ff;
+  color: #0c5460;
+}
+
+.toast-info .close-toast {
+  color: #0c5460;
+}
+
+.toast-info .close-toast:hover {
+  color: #093d45;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.theme-toggle {
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.typing-text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-form {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--background-color), rgba(255, 255, 255, 0.9));
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.currency-symbol {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.transactions {
+    padding: 5rem 2rem;
+}
+
+.transactions-table {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.transactions table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transactions th,
+.transactions td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.transactions th {
+    background-color: var(--card-bg);
+    font-weight: 600;
+}
+
+.transactions tr:hover {
+    background-color: var(--card-bg);
+}
+
+.status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status.success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.status.pending {
+    background-color: #fbbf24;
+    color: #1f2937;
+}
+
+.status.error {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.feature p {
+    color: #6b7280;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--card-bg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .transaction-form,
+    .transactions {
+        padding: 3rem 1rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+    
+    .cta-button {
+        width: 100%;
+    }
+}
